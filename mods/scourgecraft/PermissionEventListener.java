@@ -1,14 +1,33 @@
 package mods.scourgecraft;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import mods.scourgecraft.permission.SGRank;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class PermissionEventListener {
 
+	@ForgeSubscribe
+	  public void ServerChat(ServerChatEvent event)
+	  {
+	    String line = event.component.toStringWithFormatting(true);
+
+	    event.setCanceled(true);
+
+	    if (event.message.substring(0, 5).compareTo(".rank") == 0)
+	    {
+	    	event.player.addChatMessage("Your Ranks are as follows : ");
+	    	event.player.addChatMessage("Builder Level : " + event.player.builderLevel);
+	    	event.player.addChatMessage("Warrior Level : " + event.player.warriorLevel);
+	    	event.player.addChatMessage("Enchanter Level : " + event.player.enchanterLevel);
+	    }
+	  }
+	
 	 @ForgeSubscribe
 	  public void PlayerInteract(PlayerInteractEvent event)
 	  {

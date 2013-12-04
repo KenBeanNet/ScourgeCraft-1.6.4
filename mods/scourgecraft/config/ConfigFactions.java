@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.scourgecraft.ScourgeCraftCore;
 import mods.scourgecraft.blocks.BlockFactionSelector;
+import mods.scourgecraft.permission.SGRank;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 
@@ -28,7 +29,7 @@ public class ConfigFactions {
 	
 	public void initConfig()
     {
-            File var0 = new File(ScourgeCraftCore.proxy.getMinecraftDir() + "/config/ScourgeCraft");
+        File var0 = new File(ScourgeCraftCore.proxy.getMinecraftDir() + "/config/ScourgeCraft");
         var0.mkdir();
         File var1 = new File(ScourgeCraftCore.proxy.getMinecraftDir() + "/config/ScourgeCraft/Factions.cfg");
 

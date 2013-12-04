@@ -47,6 +47,7 @@ public class Packet3LoginSuccessful extends ScourgePacket {
             			}
                     }
     				PacketDispatcher.sendPacketToPlayer(new Packet5RoundInfo(ScourgeCraftCore.instance.factionController.getRoundType()).makePacket(), (Player)player);
+    				PacketDispatcher.sendPacketToPlayer(new Packet7JobInfo(remotePlayer.vitalityPoints, remotePlayer.builderLevel, remotePlayer.warriorLevel, remotePlayer.enchanterLevel).makePacket(), (Player)player);
             } 
     }
 }

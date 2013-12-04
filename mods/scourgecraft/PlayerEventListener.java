@@ -46,6 +46,8 @@ public class PlayerEventListener {
             {
 				ScourgeCraftCore.instance.factionController.addKillToFaction(attacker.factionId);
             }
+			
+			JobController.increaseVitality(attacker, 3, "You have recieved 3 Vitality Points for killing " + reciever.username);
 		}
 	}
 	

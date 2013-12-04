@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.scourgecraft.ScourgeCraftCore;
 import mods.scourgecraft.blocks.BlockFactionHQ;
 import mods.scourgecraft.blocks.BlockFactionSelector;
+import mods.scourgecraft.blocks.BlockJobEnchanter;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 
@@ -19,6 +20,9 @@ public class ConfigBlocks {
 	
 	public static int factionHQID;
 	public static Block factionHQ;
+	
+	public static int jobEnchanterID;
+	public static Block jobEnchanter;
 	
 	public void initConfig()
     {
@@ -38,6 +42,7 @@ public class ConfigBlocks {
             
         factionSelectorID = config.get("Blocks", "factionSelector", 500).getInt();
         factionHQID = config.get("Blocks", "factionHQ", 501).getInt();
+        jobEnchanterID = config.get("Blocks", "jobEnchanter", 502).getInt();
         
         config.save();
     }
@@ -46,18 +51,22 @@ public class ConfigBlocks {
     {
 		factionSelector = (new BlockFactionSelector(factionSelectorID)).setCreativeTab(ScourgeCraftCore.tabBlocks).setUnlocalizedName("factionSelector");
 		factionHQ = (new BlockFactionHQ(factionHQID)).setCreativeTab(ScourgeCraftCore.tabBlocks).setUnlocalizedName("factionHQ");
-		
+		jobEnchanter = (new BlockJobEnchanter(jobEnchanterID)).setCreativeTab(ScourgeCraftCore.tabBlocks).setUnlocalizedName("jobEnchanter");
     }
 	
 	public void register()
     {
         GameRegistry.registerBlock(factionSelector, ScourgeCraftCore.modid + "factionSelector");
         GameRegistry.registerBlock(factionHQ, ScourgeCraftCore.modid + "factionHQ");
+        GameRegistry.registerBlock(jobEnchanter, ScourgeCraftCore.modid + "jobEnchanter");
     }
 	
 	public void languageRegister()
 	{
+    	LanguageRegistry.instance().addStringLocalization("itemGroup.ScourgeCraft : Blocks", "ScourgeCraft: Blocks");
+    	
 	    LanguageRegistry.addName(factionSelector, "Faction Selector");
 	    LanguageRegistry.addName(factionHQ, "Faction Head Quarters");
+	    LanguageRegistry.addName(jobEnchanter, "Job Enchanter");
 	}
 }

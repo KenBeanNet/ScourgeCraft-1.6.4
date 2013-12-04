@@ -49,10 +49,10 @@ public class PlayerFactionHandler  implements ITickHandler {
 			int height = res.getScaledHeight();
 			int color = 0xFFFFFF;
 			mc.entityRenderer.setupOverlayRendering();
+			GuiIngame gui = mc.ingameGUI;
 
 			// draw
-			String text = "ScourgeCraft";
-			fontRender.drawStringWithShadow(text, (width / 2) - (fontRender.getStringWidth(text) / 2) , 2, color);
+			fontRender.drawString("ScourgeCraft", (width / 2) - (fontRender.getStringWidth("ScourgeCraft") / 2) , 2, color);
 			
 			//Round Information
 			if (ticks % 20 == 0)
@@ -68,9 +68,29 @@ public class PlayerFactionHandler  implements ITickHandler {
 			else
 				displayText = secondsLeftInRound + " Seconds";
 			
-			if (secondsLeftInRound > 0)
+			if (mc.thePlayer.factionId != 0)
 			{
-				GuiIngame gui = mc.ingameGUI;
+				GL11.glPushMatrix();
+				GL11.glDisable(GL11.GL_LIGHTING);
+
+				mc.getTextureManager().bindTexture(ResourceFileGui.factions);
+				
+				if (mc.thePlayer.factionId == 1)
+					gui.drawTexturedModalRect(2, height / 2, 0, 32, 32, 32);
+				else if (mc.thePlayer.factionId == 1)
+					gui.drawTexturedModalRect(2, height / 2, 32, 32, 32, 32);
+				else if (mc.thePlayer.factionId == 2)
+					gui.drawTexturedModalRect(2, height / 2, 64, 32, 32, 32);
+				else if (mc.thePlayer.factionId == 3)
+					gui.drawTexturedModalRect(2, height / 2, 96, 32, 32, 32);
+					
+                GL11.glPopMatrix();
+                fontRender.drawString("VIT:" + Integer.toString(mc.thePlayer.vitalityPoints), 3 , height / 2 + 32, color);
+		    }
+			
+			
+			if (secondsLeftInRound > 0 && (ScourgeCraftCore.instance.factionController.getRoundType() == 2 || ScourgeCraftCore.instance.factionController.getRoundType() == 3))
+			{
 			
 				int[] factionGuiWidth = ScourgeCraftCore.instance.factionController.getGuiWidthLength(200);
 				//Balance of Power Bar
@@ -78,36 +98,39 @@ public class PlayerFactionHandler  implements ITickHandler {
 				int guiTotalWidthEnd = factionGuiWidth[0];
 				gui.drawRect(width / 2 - 100 + guiTotalWidthStart, 15, width / 2 - 100 + guiTotalWidthEnd, 25, 0xaFFF0000);
 				String percentText = (int)(((float)factionGuiWidth[0] / (float)200) * 100) + "%";
-				fontRender.drawStringWithShadow(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
+				fontRender.drawString(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
 				guiTotalWidthStart = guiTotalWidthEnd;
 				guiTotalWidthEnd += factionGuiWidth[1];
 				gui.drawRect(width / 2 - 100 + guiTotalWidthStart, 15, width / 2 - 100 + guiTotalWidthEnd, 25, 0xaF0000FF);
 				percentText = (int)(((float)factionGuiWidth[1] / (float)200) * 100) + "%";
-				fontRender.drawStringWithShadow(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
+				fontRender.drawString(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
 				guiTotalWidthStart = guiTotalWidthEnd;
 				guiTotalWidthEnd += factionGuiWidth[2];
 				gui.drawRect(width / 2 - 100 + guiTotalWidthStart, 15, width / 2 - 100 + guiTotalWidthEnd, 25, 0xaF009933);
 				percentText = (int)(((float)factionGuiWidth[2] / (float)200) * 100) + "%";
-				fontRender.drawStringWithShadow(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
+				fontRender.drawString(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
 				guiTotalWidthStart = guiTotalWidthEnd;
 				guiTotalWidthEnd += factionGuiWidth[3];
 				gui.drawRect(width / 2 - 100 + guiTotalWidthStart, 15, width / 2 - 100 + guiTotalWidthEnd, 25, 0xaFFFFF00);
 				percentText = (int)(((float)factionGuiWidth[3] / (float)200) * 100) + "%";
-				fontRender.drawStringWithShadow(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
+				fontRender.drawString(percentText, width / 2 - 100 + guiTotalWidthStart + 2, 16, color);
 			
-			
-				fontRender.drawStringWithShadow(displayText, width / 2 - 100 + guiTotalWidthEnd + 20, 28, color);
 				
+				GL11.glPushMatrix();
+				GL11.glDisable(GL11.GL_LIGHTING);
+				//GL11.glScalef((float)0.8, (float)0.8, (float)0.8);
+				mc.getTextureManager().bindTexture(ResourceFileGui.factions);
 				if (roundType == 0)	
-					Minecraft.getMinecraft().renderEngine.bindTexture(ResourceFileGui.factionRoundWarmup);
+					gui.drawTexturedModalRect(width / 2 - 100 + guiTotalWidthEnd + 25, 2, 0, 0, 32, 32);
 				else if (roundType == 1)
-					Minecraft.getMinecraft().renderEngine.bindTexture(ResourceFileGui.factionRoundPrep);
+					gui.drawTexturedModalRect(width / 2 - 100 + guiTotalWidthEnd + 25, 2, 32, 0, 32, 32);
 				else if (roundType == 2)
-					Minecraft.getMinecraft().renderEngine.bindTexture(ResourceFileGui.factionRoundBalance);
+					gui.drawTexturedModalRect(width / 2 - 100 + guiTotalWidthEnd + 25, 2, 64, 0, 32, 32);
 				else if (roundType == 3)
-					Minecraft.getMinecraft().renderEngine.bindTexture(ResourceFileGui.factionRoundWar);
+					gui.drawTexturedModalRect(width / 2 - 100 + guiTotalWidthEnd + 25, 2, 96, 0, 32, 32);
+				GL11.glPopMatrix();
 			
-				gui.drawTexturedModalRect(width / 2 - 100 + guiTotalWidthEnd + 25, 2, 0, 0, 24, 24);
+				fontRender.drawString(displayText, width / 2 - 100 + guiTotalWidthEnd + 20, 32, color);
 			}
 			
 			if (ticks == 100)

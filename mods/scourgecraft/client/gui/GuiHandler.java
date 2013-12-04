@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mods.scourgecraft.ScourgeCraftCore;
-import mods.scourgecraft.inventory.ContainerFactionSelector;
+import mods.scourgecraft.inventory.ContainerDefault;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -29,7 +29,8 @@ public class GuiHandler implements IGuiHandler
 		switch (ID)
 		{
 			default: return null;
-			case 0: return new ContainerFactionSelector();
+			case 0: return new ContainerDefault();
+			case 1: return new ContainerDefault();
 		}
 	}
 
@@ -40,6 +41,7 @@ public class GuiHandler implements IGuiHandler
 		{
 			default: return null;
 			case 0: return new GuiFactionSelector(player);
+			case 1: return new GuiJobEnchanter(player);
 		}
 	}
  

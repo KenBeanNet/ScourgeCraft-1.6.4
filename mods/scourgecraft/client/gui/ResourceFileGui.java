@@ -5,8 +5,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class ResourceFileGui {
 	public static ResourceLocation factionSelectorBackgroundGui = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/background.png");
-	public static ResourceLocation factionRoundWarmup = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/warmup.png");
-	public static ResourceLocation factionRoundPrep = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/prep.png");
-	public static ResourceLocation factionRoundBalance = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/balance.png");
-	public static ResourceLocation factionRoundWar = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/war.png");
+	public static ResourceLocation factions = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/factions.png");
+	public static ResourceLocation factionRed = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/flairon.png");
+	public static ResourceLocation factionBlue = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/liqus.png");
+	public static ResourceLocation factionGreen = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/Eternus.png");
+	public static ResourceLocation factionYellow = new ResourceLocation(ScourgeCraftCore.modid.toLowerCase(), "textures/gui/Shinora.png");
 }

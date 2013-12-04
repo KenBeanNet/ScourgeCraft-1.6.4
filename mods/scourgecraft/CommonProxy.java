@@ -4,9 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 
-import mods.scourgecraft.client.gui.GuiFactionSelector;
-import mods.scourgecraft.client.gui.GuiHandler;
 import mods.scourgecraft.tick.ServerTickHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;

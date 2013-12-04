@@ -1,12 +1,16 @@
 package mods.scourgecraft;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import mods.scourgecraft.client.gui.GuiHandler;
 import mods.scourgecraft.config.ConfigBlocks;
 import mods.scourgecraft.config.ConfigFactions;
+import mods.scourgecraft.config.ConfigJobs;
 import mods.scourgecraft.creative.CreativeTabBlock;
 import mods.scourgecraft.network.PacketHandler;
+import mods.scourgecraft.permission.SGRank;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -51,6 +55,7 @@ public class ScourgeCraftCore
     
     public static ConfigBlocks configBlocks;
     public static ConfigFactions configFactions;
+    public static ConfigJobs configJobs;
     
     public FactionController factionController;
     
@@ -58,17 +63,23 @@ public class ScourgeCraftCore
     public static PermissionEventListener permissionEventListener;
 
     public static PlayerTracker playerTracker;
+    
+    public ArrayList<SGRank> ranks;
+    
 
     @EventHandler
-    public void loadConfigurationValues(FMLPreInitializationEvent event) {
+    public void loadConfigurationValues(FMLPreInitializationEvent event)
+    {
     	tabBlocks = new CreativeTabBlock("SG : Blocks");
     	
     	configBlocks = new ConfigBlocks();
     	configFactions = new ConfigFactions();
+    	configJobs = new ConfigJobs();
     	factionController = new FactionController();
     	playerEventListener = new PlayerEventListener();
     	permissionEventListener = new PermissionEventListener();
     	playerTracker = new PlayerTracker();
+    	ranks = new ArrayList<SGRank>();
     }
     
     @EventHandler
@@ -81,6 +92,7 @@ public class ScourgeCraftCore
     {
         configBlocks.initConfig();
         configFactions.initConfig();
+        configJobs.initConfig();
         
     	MinecraftForge.EVENT_BUS.register(playerEventListener);
     	MinecraftForge.EVENT_BUS.register(permissionEventListener);
@@ -88,12 +100,8 @@ public class ScourgeCraftCore
     	new GuiHandler();
     	
     	configBlocks.load();
-    	
     	configBlocks.register();
-    	
     	configBlocks.languageRegister();
-    	
-    	LanguageRegistry.instance().addStringLocalization("itemGroup.ScourgeCraft : Blocks", "ScourgeCraft: Blocks");
     	
     	proxy.registerHandlers();
 

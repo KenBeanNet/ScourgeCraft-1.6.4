@@ -8,6 +8,7 @@ import mods.scourgecraft.network.packet.Packet3LoginSuccessful;
 import mods.scourgecraft.network.packet.Packet4FactionInfo;
 import mods.scourgecraft.network.packet.Packet5RoundInfo;
 import mods.scourgecraft.network.packet.Packet6OnRespawn;
+import mods.scourgecraft.network.packet.Packet7JobInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet;
 
@@ -35,6 +36,7 @@ public abstract class ScourgePacket {
             builder.put(Integer.valueOf(4), Packet4FactionInfo.class);
             builder.put(Integer.valueOf(5), Packet5RoundInfo.class);
             builder.put(Integer.valueOf(6), Packet6OnRespawn.class);
+            builder.put(Integer.valueOf(7), Packet7JobInfo.class);
             // we add all our packets here later
            
             idMap = builder.build();

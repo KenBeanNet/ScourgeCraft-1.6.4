@@ -2,11 +2,11 @@ package mods.scourgecraft;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import mods.scourgecraft.client.gui.GuiFactionSelector;
-import mods.scourgecraft.client.gui.GuiHandler;
 import mods.scourgecraft.tick.PlayerFactionHandler;
 import mods.scourgecraft.tick.PlayerTickHandler;
 import mods.scourgecraft.tick.ServerTickHandler;
@@ -24,5 +24,10 @@ public class ClientProxy extends CommonProxy {
             TickRegistry.registerTickHandler(playerTickHandler, Side.CLIENT);
             TickRegistry.registerTickHandler(playerFactionHandler, Side.CLIENT);
             super.registerHandlers();
+    }
+	
+	public File getMinecraftDir()
+    {
+        return Minecraft.getMinecraft().mcDataDir;
     }
 }

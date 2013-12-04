@@ -59,6 +59,13 @@ public class GuiFactionSelector extends GuiScreen {
 				this.drawString(this.fontRenderer, Integer.toString(ScourgeCraftCore.instance.factionController.getDeathCount()[i]), posX + 85 + (i * 30), posY + 75, color);
 			}
 		}
+		if (playerPar1.factionId == 0)
+		{
+			this.buttonList.add(new GuiButton(1, posX + 10, posY + 100, 45, 20, "One"));
+			this.buttonList.add(new GuiButton(2, posX + 65, posY + 100, 45, 20, "Two"));
+			this.buttonList.add(new GuiButton(3, posX + 120, posY + 100, 45, 20, "Three"));
+			this.buttonList.add(new GuiButton(4, posX + 175, posY + 100, 45, 20, "Four"));
+		}
 		
 		super.drawScreen(x, y, f);
 	}
@@ -67,20 +74,6 @@ public class GuiFactionSelector extends GuiScreen {
 	public boolean doesGuiPauseGame()
 	{
 		return false;
-	}
-	
-	public void initGui()
-	{
-		int posX = (this.width - xSizeOfTexture) / 2;
-		int posY = (this.height - ySizeOfTexture) / 2;
-		
-		if (playerPar1.factionId == 0)
-		{
-			this.buttonList.add(new GuiButton(1, posX + 10, posY + 100, 45, 20, "One"));
-			this.buttonList.add(new GuiButton(2, posX + 65, posY + 100, 45, 20, "Two"));
-			this.buttonList.add(new GuiButton(3, posX + 120, posY + 100, 45, 20, "Three"));
-			this.buttonList.add(new GuiButton(4, posX + 175, posY + 100, 45, 20, "Four"));
-		}
 	}
 	
 	public void actionPerformed(GuiButton button)
