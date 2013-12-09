@@ -3,7 +3,7 @@ package mods.scourgecraft;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import mods.scourgecraft.permission.SGRank;
+import mods.scourgecraft.permission.SGJob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.ForgeSubscribe;

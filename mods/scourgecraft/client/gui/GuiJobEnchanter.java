@@ -4,6 +4,7 @@ import mods.scourgecraft.FactionController;
 import mods.scourgecraft.JobController;
 import mods.scourgecraft.ScourgeCraftCore;
 import mods.scourgecraft.network.packet.Packet2RegisterFaction;
+import mods.scourgecraft.network.packet.Packet8JobLevelUp;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -75,9 +76,34 @@ public class GuiJobEnchanter extends GuiScreen {
 		
 		switch (button.id)
 		{
-			case 1:
+			case 1: //Upgrade Builder
 			{
-				
+				if (playerPar1.vitalityPoints >= JobController.getNextLevelCostByInt("Builder", playerPar1.builderLevel))
+				{
+					PacketDispatcher.sendPacketToServer(new Packet8JobLevelUp("Builder").makePacket());
+				}
+				else
+					playerPar1.addChatMessage("Sorry you do not have enough Vitality to upgrade Builder to level " + playerPar1.builderLevel++);
+				break;
+			}
+			case 2: //Upgrade Warrior
+			{
+				if (playerPar1.vitalityPoints >= JobController.getNextLevelCostByInt("Warrior", playerPar1.warriorLevel))
+				{
+					PacketDispatcher.sendPacketToServer(new Packet8JobLevelUp("Warrior").makePacket());
+				}
+				else
+					playerPar1.addChatMessage("Sorry you do not have enough Vitality to upgrade Warrior to level " + playerPar1.warriorLevel++);
+				break;
+			}
+			case 3: //Upgrade Enchanter
+			{
+				if (playerPar1.vitalityPoints >= JobController.getNextLevelCostByInt("Enchanter", playerPar1.enchanterLevel))
+				{
+					PacketDispatcher.sendPacketToServer(new Packet8JobLevelUp("Enchanter").makePacket());
+				}
+				else
+					playerPar1.addChatMessage("Sorry you do not have enough Vitality to upgrade Enchanter to level " + playerPar1.enchanterLevel++);
 				break;
 			}
 		}

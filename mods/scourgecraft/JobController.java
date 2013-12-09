@@ -4,13 +4,13 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import mods.scourgecraft.network.packet.Packet7JobInfo;
-import mods.scourgecraft.permission.SGRank;
+import mods.scourgecraft.permission.SGJob;
 
 public class JobController {
 
 	public static String getNextLevelCost(String jobName, byte currentLevel)
 	{
-		for (SGRank r : ScourgeCraftCore.instance.ranks)
+		for (SGJob r : ScourgeCraftCore.instance.ranks)
 		{
 			if (r.title.equals(jobName))
 			{
@@ -21,6 +21,21 @@ public class JobController {
 			}
 		}
 		return "MAX";
+	}
+	
+	public static int getNextLevelCostByInt(String jobName, byte currentLevel)
+	{
+		for (SGJob r : ScourgeCraftCore.instance.ranks)
+		{
+			if (r.title.equals(jobName))
+			{
+				if (r.level == currentLevel + 1)
+				{
+					return r.cost;
+				}
+			}
+		}
+		return Integer.MAX_VALUE;
 	}
 	
 	public static void increaseVitality(EntityPlayer player, int amount, String reason)

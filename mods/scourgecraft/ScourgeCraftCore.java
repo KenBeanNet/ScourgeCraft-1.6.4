@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import mods.scourgecraft.client.SoundSystem;
 import mods.scourgecraft.client.gui.GuiHandler;
 import mods.scourgecraft.config.ConfigBlocks;
 import mods.scourgecraft.config.ConfigFactions;
 import mods.scourgecraft.config.ConfigJobs;
 import mods.scourgecraft.creative.CreativeTabBlock;
 import mods.scourgecraft.network.PacketHandler;
-import mods.scourgecraft.permission.SGRank;
+import mods.scourgecraft.permission.SGJob;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,6 +21,7 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -64,7 +66,7 @@ public class ScourgeCraftCore
 
     public static PlayerTracker playerTracker;
     
-    public ArrayList<SGRank> ranks;
+    public ArrayList<SGJob> ranks;
     
 
     @EventHandler
@@ -79,12 +81,17 @@ public class ScourgeCraftCore
     	playerEventListener = new PlayerEventListener();
     	permissionEventListener = new PermissionEventListener();
     	playerTracker = new PlayerTracker();
-    	ranks = new ArrayList<SGRank>();
+    	ranks = new ArrayList<SGJob>();
     }
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) 
     {
+    	//registers sound
+        if(FMLCommonHandler.instance().getSide().isClient())
+        {
+        	MinecraftForge.EVENT_BUS.register(new SoundSystem());
+        }
     }
     
     @EventHandler

@@ -8,7 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.scourgecraft.ScourgeCraftCore;
 import mods.scourgecraft.blocks.BlockFactionSelector;
-import mods.scourgecraft.permission.SGRank;
+import mods.scourgecraft.permission.SGJob;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 

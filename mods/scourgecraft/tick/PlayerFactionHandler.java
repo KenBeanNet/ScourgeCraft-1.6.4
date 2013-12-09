@@ -156,21 +156,25 @@ public class PlayerFactionHandler  implements ITickHandler {
 		{
 			case 0:
 			{
+				mc.thePlayer.playSound(ScourgeCraftCore.modid.toLowerCase() + ":warend", 1.0F, 1.0F);
 				mc.thePlayer.addChatMessage("The server is in warmup mode");
 				break;
 			}
 			case 1:
 			{
+				mc.thePlayer.playSound(ScourgeCraftCore.modid.toLowerCase() + ":warmup", 1.0F, 1.0F);
 				mc.thePlayer.addChatMessage("The server is in Prep mode");
 				break;
 			}
 			case 2:
 			{
+				mc.thePlayer.playSound(ScourgeCraftCore.modid.toLowerCase() + ":balance", 1.0F, 1.0F);
 				mc.thePlayer.addChatMessage("The server is in Balance mode");
 				break;
 			}
 			case 3: 
 			{
+				mc.thePlayer.playSound(ScourgeCraftCore.modid.toLowerCase() + ":warcry", 1.0F, 1.0F);
 				mc.thePlayer.addChatMessage("The server is in War mode");
 				break;
 			}

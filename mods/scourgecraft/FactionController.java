@@ -193,9 +193,9 @@ public class FactionController {
 			case 20:
 			{
 				if (now.getMinutes() <= 5)
-					return 1;
-				else
 					return 0;
+				else
+					return 1;
 			}
 		}
 		switch (now.getHours())
